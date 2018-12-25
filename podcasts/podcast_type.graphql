@@ -1,0 +1,29 @@
+type Query {
+    search(term: String!): [Podcast!]!
+    podcast(id: ID!): Podcast
+    episode(id: ID!): Episode
+
+}
+
+type Podcast {
+    title: String!
+    id: ID!
+    imgURL: String
+    thumbImageURL: String
+    language: String
+    lastpoll: String
+    lastpub: String
+    description: String
+    subtitle: String
+    episodes: [Episode!]!
+}
+
+type Episode {
+    id: ID!
+    title: String!
+    podcast_id: ID!
+    imgURL: String
+    pubdate: String
+    duration: Int
+    description: String
+}
