@@ -1,14 +1,20 @@
 const baseUrl = 'https://api.fyyd.de/0.2';
+const bookUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
 const fetch = require('node-fetch');
 
 
 export const resolvers = {
     Query: {
-        search: (parent, args) => {
+        searchPodcast: (parent, args) => {
             const { term } = args;
-            console.log(`${baseUrl}/search/podcast?term=${term}`);
             return fetch(`${baseUrl}/search/podcast?term=${term}`).then(res => {
                 return res.json().then(data => data.data);
+            });
+        },
+        searchBook: (parent, args) => {
+            const { term } = args;
+            return fetch(`${bookUrl}${term}`).then(res => {
+                return res.json().then(data => data.items);
             });
         },
         podcast: (parent, args) => {

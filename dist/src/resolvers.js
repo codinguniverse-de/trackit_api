@@ -4,17 +4,26 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var baseUrl = 'https://api.fyyd.de/0.2';
+var bookUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
 var fetch = require('node-fetch');
 
 var resolvers = exports.resolvers = {
     Query: {
-        search: function search(parent, args) {
+        searchPodcast: function searchPodcast(parent, args) {
             var term = args.term;
 
-            console.log(baseUrl + '/search/podcast?term=' + term);
             return fetch(baseUrl + '/search/podcast?term=' + term).then(function (res) {
                 return res.json().then(function (data) {
                     return data.data;
+                });
+            });
+        },
+        searchBook: function searchBook(parent, args) {
+            var term = args.term;
+
+            return fetch('' + bookUrl + term).then(function (res) {
+                return res.json().then(function (data) {
+                    return data.items;
                 });
             });
         },

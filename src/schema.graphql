@@ -1,5 +1,6 @@
 type Query {
-    search(term: String!): [Podcast!]!
+    searchPodcast(term: String!): [Podcast!]!
+    searchBook(term: String!): [Book!]!
     podcast(id: ID!): Podcast
     episode(id: ID!): Episode
 
@@ -26,4 +27,45 @@ type Episode {
     pubdate: String
     duration: Int
     description: String
+}
+
+type Book {
+    id: ID!
+    volumeInfo: VolumeInfo!
+    saleInfo: SaleInfo
+}
+
+type VolumeInfo {
+    title: String!
+    authors: [String]
+    publisher: String
+    publishedDate: String
+    description: String
+    industryIdentifiers: [IndustryIdentifier!]!
+    pageCount: Int
+    categories: [String]
+    imageLinks: ImageLink
+    language: String
+}
+
+type IndustryIdentifier {
+    type: String!
+    identifier: String!
+}
+
+type ImageLink {
+    smallThumbnail: String
+    thumbnail: String
+}
+
+type SaleInfo {
+    country: String
+    listPrice: PriceInfo
+    retailPrice: PriceInfo
+    buyLink: String
+}
+
+type PriceInfo {
+    amount: Float!
+    currencyCode: String!
 }

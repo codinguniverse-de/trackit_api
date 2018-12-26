@@ -1,10 +1,10 @@
 const { GraphQLServer } = require('graphql-yoga');
-import * as podcasts from "./podcasts" ;
+import { resolvers } from "./resolvers";
 
 
 const server = new GraphQLServer({
     typeDefs: 'src/schema.graphql',
-    resolvers: podcasts.resolvers
+    resolvers
 });
 
 server.start(() => console.log('Server is running on http://localhost:4000'));
