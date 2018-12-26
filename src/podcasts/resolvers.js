@@ -1,32 +1,8 @@
-const { GraphQLServer } = require('graphql-yoga');
 const baseUrl = 'https://api.fyyd.de/0.2';
 const fetch = require('node-fetch');
 
 
-const typeDefs = `
-    type Query {
-        users: [User!]!
-        user(id: ID!): User
-        posts: [Post!]!
-        post(id: ID!): Post
-    }
-  
-    type User {
-        id: ID!
-        name: String!
-        posts: [Post!]!
-    }
-  
-    type Post {
-        id: ID!
-        title: String!
-        content: String!
-        published: Boolean!
-        author: User!
-    }
-`;
-
-const resolvers = {
+export const resolvers = {
     Query: {
         search: (parent, args) => {
             const { term } = args;
@@ -57,9 +33,3 @@ const resolvers = {
         },
     }
 }
-const server = new GraphQLServer({
-    typeDefs: './podcasts/podcast_type.graphql',
-    resolvers
-});
-
-server.start(() => console.log('Server is running on http://localhost:4000'));

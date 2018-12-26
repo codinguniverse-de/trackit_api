@@ -2,14 +2,21 @@
   "name": "trackit_api",
   "version": "1.0.0",
   "description": "API for Podcast and Books Data using GraphQL",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "start": "npm run build && node dist/src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "graphql-yoga": "^1.16.9",
     "node-fetch": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "rimraf": "^2.6.2"
   }
 }
